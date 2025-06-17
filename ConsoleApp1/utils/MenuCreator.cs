@@ -57,12 +57,18 @@ public static class MenuCreator
             AnsiColors.Write(prompt, AnsiColors.Green);
             string input = Console.ReadLine();
 
-            if (double.TryParse(input, out double result)&& result >= 0)
+            if (double.TryParse(input, out double result) && result >= 0)
             {
                 return result;
             }
             Console.Clear();
             AnsiColors.WriteLine("Entrada inválida. Por favor, digite um número inteiro.", AnsiColors.Red);
         }
+    }
+
+    public static String ReadStringInput(string prompt = null)
+    {
+        AnsiColors.Write(prompt, AnsiColors.Cyan);
+        return Console.ReadLine();
     }
 }

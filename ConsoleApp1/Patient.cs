@@ -2,6 +2,7 @@
 {
     public class Patient
     {
+        public String Cpf;
         public String Name;
         public int BloodPressure;
         public double Temperature;
@@ -9,9 +10,18 @@
 
         public Patient()
         {
-            AnsiColors.Write("Digite o nome do paciente: ", AnsiColors.Green);
-            Name = Console.ReadLine();
+            Name = MenuCreator.ReadStringInput("Digite o nome do paciente: ");
+            Cpf = FormatCPF(MenuCreator.ReadStringInput("Digite o CPF do paciente: "));
         }
+
+        public static string FormatCPF(string cpf)
+        {
+            if (cpf == null || cpf.Length != 11)
+                throw new ArgumentException("O CPF deve ter exatamente 11 caracteres.");
+
+            return $"{cpf.Substring(0, 3)}.{cpf.Substring(3, 3)}.{cpf.Substring(6, 3)}-{cpf.Substring(9, 2)}";
+        }
+
 
         public Patient(String name = "", int pressure = 0, double temperature = 0, int oxygenation = 0)
         {
